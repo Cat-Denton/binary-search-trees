@@ -1,6 +1,25 @@
-export default class BST {
+ export default class BST {
   constructor() {
     this.root = null;
+  }
+  search(value) {
+    if (this.root.data === value) {
+      return true;
+    } else {
+      let currentNode = this.root;
+      while (true) {
+        if (currentNode.data === value) {
+          return true;
+        } else if (currentNode.data > value) {
+          currentNode = currentNode.left;
+        } else if (currentNode.data < value) {
+          currentNode = currentNode.right;
+        }
+        if (currentNode === null) {
+          return false;
+        }
+      }
+    }
   }
 
   insertNode(insertedNode) {
@@ -9,7 +28,7 @@ export default class BST {
     } else {
       let currentNode = this.root;
       while (true) {
-        if (currentNode.data > insertedNode.data) {
+         if (currentNode.data > insertedNode.data) {
           if (currentNode.left === null) {
             currentNode.left = insertedNode;
             return this;
@@ -25,6 +44,8 @@ export default class BST {
           }
           // currentNode.right = insertedNode;
           // return this;
+        } else {
+          return this;
         }
       }
     }
